@@ -1,0 +1,23 @@
+01_12_2019
+	Cork      	Dublin      	Galway      	Belmullet      	Belfast      	Places Avail
+
+	25		67		12		77		32		Murder Mystery Weekend
+
+	28		3		34		12		7		CSI Weekend
+
+	23		2		6		4		3		The Great Outdoors
+
+	12		6		9		4		6		The Chase
+
+	2		0		7		5		8		Digital Refresh
+
+	1		8		4		7		4		Action Photography
+
+	16		24		40		4		12		Team Ryder Cup
+
+	3		7		45		3		3		Abselling
+
+	45		12		56		12		23		War Games
+
+	0		0		3		0		0		Find Wally
+

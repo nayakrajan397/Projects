@@ -1,0 +1,10 @@
+C:\Users\Rajan Nayak\source\repos\Team Builder Upgrade\Team Builder Upgrade\bin\Debug\Team Builder Upgrade.exe.config
+C:\Users\Rajan Nayak\source\repos\Team Builder Upgrade\Team Builder Upgrade\bin\Debug\Team Builder Upgrade.exe
+C:\Users\Rajan Nayak\source\repos\Team Builder Upgrade\Team Builder Upgrade\bin\Debug\Team Builder Upgrade.pdb
+C:\Users\Rajan Nayak\source\repos\Team Builder Upgrade\Team Builder Upgrade\obj\Debug\Team_Builder_Upgrade.Form1.resources
+C:\Users\Rajan Nayak\source\repos\Team Builder Upgrade\Team Builder Upgrade\obj\Debug\Team_Builder_Upgrade.Properties.Resources.resources
+C:\Users\Rajan Nayak\source\repos\Team Builder Upgrade\Team Builder Upgrade\obj\Debug\Team Builder Upgrade.csproj.GenerateResource.cache
+C:\Users\Rajan Nayak\source\repos\Team Builder Upgrade\Team Builder Upgrade\obj\Debug\Team Builder Upgrade.csproj.CoreCompileInputs.cache
+C:\Users\Rajan Nayak\source\repos\Team Builder Upgrade\Team Builder Upgrade\obj\Debug\Team Builder Upgrade.exe
+C:\Users\Rajan Nayak\source\repos\Team Builder Upgrade\Team Builder Upgrade\obj\Debug\Team Builder Upgrade.pdb
+C:\Users\Rajan Nayak\source\repos\Team Builder Upgrade\Team Builder Upgrade\obj\Debug\Team Builder Upgrade.csprojAssemblyReference.cache
