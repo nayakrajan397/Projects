@@ -2,7 +2,7 @@
 
 The primary aim of the project was to analyse Yelp datasets including restaurants in the city of Las Vegas.
 
-![picture](Top 20 Restaurants (1).png)
+![picture](https://github.com/nayakrajan397/Projects/blob/main/Sentimental%20Analysis%20on%20review%20text%20(Tableau%2C%20Python)/Top%2020%20Restaurants%20(1).PNG)
 
 Grand Lux Café has the highest number of reviews (Suggesting high traffic) with the avg. rating of just 3.8. Therefore, we decided to choose Grand Lux Café (GLC) to perform analysis and answer some business questions accordingly.
 
