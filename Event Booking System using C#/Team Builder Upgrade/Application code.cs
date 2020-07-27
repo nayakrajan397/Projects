@@ -26,7 +26,7 @@ namespace Team_Builder_Upgrade
     public partial class Form1 : Form
     {
         //Declare CurrentEventPrice, CurrentMealPrice, FinalCost, InitialFinalCost variables as decimal data type
-        decimal CurrentEventPrice, CurrentMealPrice, FinalCost, InitialFinalCost = 0;
+        decimal CurrentEventPrice, CurrentMealPrice, TotalPrice, FinalCost, InitialFinalCost = 0;
 
         //Declare an array to read available placestocks
         int[,] ResultArray = new int[10, 5];
@@ -184,11 +184,14 @@ namespace Team_Builder_Upgrade
                 // BookingAvailability() is false 
                 if (BookingAvailability() != false)
                 {
+                    // Calculate TotalPrice
+                    TotalPrice = (FinalCost + InitialFinalCost);
+                    
                     //Display the total cart price by adding FinalCost and InitialFinalCost
-                    DisplayTotalCartPriceLabel.Text = (FinalCost + InitialFinalCost).ToString("C2");
+                    DisplayTotalCartPriceLabel.Text = TotalPrice.ToString("C2");
 
                     //Store FInalCost in Initial Cost fo the next time
-                    InitialFinalCost = FinalCost;
+                    InitialFinalCost = TotalPrice;
 
                     
                 }
