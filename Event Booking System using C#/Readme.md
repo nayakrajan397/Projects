@@ -12,7 +12,7 @@ The application performs three important tasks,
  
 •	Automatic reduction (backend) in the number of available seats for an event once that event tickets were confirmed.
 
-![picture](https://github.com/nayakrajan397/Projects/blob/main/Event%20Booking%20System%20using%20C%23/Prompts%no%available%tickets.JPG)
+![picture](https://github.com/nayakrajan397/Projects/blob/main/Event%20Booking%20System%20using%20C%23/Prompts%20no%20available%20tickets.JPG)
 
  
 •	Prompts user if no tickets are available and allows the employee to access by the remaining number of tickets using the report button.
