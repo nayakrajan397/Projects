@@ -22,29 +22,29 @@ class mf_calculator:
         gains = finalAmount - totalInvestment
         return finalAmount, totalInvestment, gains
     
-    def generate_chart(self):
-        """Create a chart for investment vs gains."""
-        years = list(range(1, self.period + 1))
-        cumulative_investment = [self.amount * year for year in years]
-        cumulative_gains = [self.amount * ((1 + (self.expected_return / 100)) ** year - 1) for year in years]
+    # def generate_chart(self):
+    #     """Create a chart for investment vs gains."""
+    #     years = list(range(1, self.period + 1))
+    #     cumulative_investment = [self.amount * year for year in years]
+    #     cumulative_gains = [self.amount * ((1 + (self.expected_return / 100)) ** year - 1) for year in years]
 
-        # Plot the chart
-        plt.figure(figsize=(6, 4))
-        plt.plot(years, cumulative_investment, label="Investment")
-        plt.plot(years, cumulative_gains, label="Gains")
-        plt.title("Investment vs Gains Over Time")
-        plt.xlabel("Years")
-        plt.ylabel("Amount ($)")
-        plt.legend()
-        plt.tight_layout()
+    #     # Plot the chart
+    #     plt.figure(figsize=(6, 4))
+    #     plt.plot(years, cumulative_investment, label="Investment")
+    #     plt.plot(years, cumulative_gains, label="Gains")
+    #     plt.title("Investment vs Gains Over Time")
+    #     plt.xlabel("Years")
+    #     plt.ylabel("Amount ($)")
+    #     plt.legend()
+    #     plt.tight_layout()
 
-        # Save chart to a string
-        buf = io.BytesIO()
-        plt.savefig(buf, format="png")
-        buf.seek(0)
-        chart = base64.b64encode(buf.getvalue()).decode('utf-8')
-        buf.close()
-        return chart
+    #     # Save chart to a string
+    #     buf = io.BytesIO()
+    #     plt.savefig(buf, format="png")
+    #     buf.seek(0)
+    #     chart = base64.b64encode(buf.getvalue()).decode('utf-8')
+    #     buf.close()
+    #     return chart
 
 app = Flask(__name__)
 
