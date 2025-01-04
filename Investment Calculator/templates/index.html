@@ -4,16 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investment Calculator</title>
+    <script>
+        // JavaScript to toggle between SIP and LumpSum modes
+        function toggleMode(selectedMode) {
+            const sipFields = document.getElementById("sipFields");
+            const lumpsumField = document.getElementById("lumpsumField");
+            console.log(selectedMode);
+
+            if (selectedMode === "SIP") {
+                sipFields.style.display = "block";
+                lumpsumField.style.display = "none";
+            } else if (selectedMode === "LumpSum") {
+                sipFields.style.display = "none";
+                lumpsumField.style.display = "block";
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Investment Calculator</h1>
-    <form method="POST" action = "/">
-        <label>Monthly Investment Amount ($):</label><br>
-        <input type="number" name="Monthly Investment Amount" required><br><br>
-        <label>Years you intend to invest (Years):</label><br>
-        <input type="number" name="Years you intend to invest" required><br><br>
+
+    <!-- Toggle Switch
+    <label>
+        <input type="checkbox" id="modeToggle" onclick="toggleMode()"> 
+        <span>SIP <-> LumpSum</span>
+    </label> -->
+
+    <!-- Toggle Button for SIP and LumpSum -->
+    <div>
+        <label>
+            <input type="radio" name="mode" value="SIP" onclick="toggleMode('SIP')"> SIP
+        </label>
+        <label>
+            <input type="radio" name="mode" value="LumpSum" onclick="toggleMode('LumpSum')"> LumpSum
+        </label>
+    </div>
+
+    <form method="POST" action="/">
+        <!-- SIP Fields -->
+        <div id="sipFields" style="display: block;">
+            <label>Monthly Investment Amount ($):</label><br>
+            <input type="number" name="Investment Amount" required><br><br>
+            <label>Years you intend to invest (Years):</label><br>
+            <input type="number" name="Years" required><br><br>
+        </div>
+
+        <!-- Lumpsum Fields -->
+        <div id="lumpsumField" style="display: none;">
+            <label>Initial Investment Amount ($):</label><br>
+            <input type="number" name="Investment Amount" required><br><br>
+            <label>Years you intend to invest (Years):</label><br>
+            <input type="number" name="Years" required><br><br>
+        </div>
+
+        <!-- Common Field -->
         <label>Expected Rate of Return (%):</label><br>
         <input type="number" step="0.01" name="Expected Rate of Return" required><br><br>
+
         <button type="submit">Calculate</button>
     </form>
 
@@ -22,7 +69,9 @@
         <p>Total Investment: ${{ total_Investment }}</p>
         <p>Final Amount: ${{ final_Amount }}</p>
         <p>Gains: ${{ gains }}</p>
+        <!-- Uncomment this line if chart generation is added -->
         <!-- <img src="data:image/png;base64,{{ chart }}" alt="Chart"> -->
     {% endif %}
 </body>
 </html>
+
