@@ -82,8 +82,11 @@
         <p>Total Investment: ${{ total_Investment }}</p>
         <p>Final Amount: ${{ final_Amount }}</p>
         <p>Gains: ${{ gains }}</p>
-        <!-- Uncomment this line if chart generation is added -->
-        <!-- <img src="data:image/png;base64,{{ chart }}" alt="Chart"> -->
+
+        {% if mode == "SIP" %}
+        <!-- Chart specific to SIP -->
+        <img src="data:image/png;base64,{{ chart }}" alt="Chart">
+        {% endif %}
     {% endif %}
 </body>
 </html>
