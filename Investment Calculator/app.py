@@ -41,18 +41,18 @@ def index():
     if request.method == "POST":
         try:
             calc = mf_calculator()
-            mode = request.form.get("mode") 
+            mode = request.form.get("mode")
 
             if mode == "SIP":
-                amount = request.form.get("Investment Amount")
-                period = request.form.get("Years")
+                amount = request.form.get("sipInvestmentAmount")
+                period = request.form.get("sipYears")
                 expected_return = request.form.get("Expected Rate of Return")
                 calc.retrive_user_inputs(amount, period, expected_return)
                 finalAmount, totalInvestment, gains = calc.calculate()              
 
-            else:
-                amount = request.form.get("Investment Amount")
-                period = request.form.get("Years")
+            elif mode == "LumpSum":
+                amount = request.form.get("lumpsumInvestmentAmount")
+                period = request.form.get("lumpsumYears")
                 expected_return = request.form.get("Expected Rate of Return")
                 calc.retrive_user_inputs(amount, period, expected_return)
                 finalAmount, totalInvestment, gains = calc.lumpsumCalc()  
@@ -60,7 +60,7 @@ def index():
             # Render the results pages
             try:
                 return render_template(
-                "index.html",
+                "index.html", 
                 total_Investment=f"{totalInvestment:,.2f}",
                 final_Amount=f"{finalAmount:,.2f}",
                 gains=f"{gains:,.2f}"
@@ -70,7 +70,7 @@ def index():
         
         except Exception as e:
             return f"Error: {e}"
-
+     
     return render_template("index.html", total_Investment=None)
 
 if __name__ == '__main__':  

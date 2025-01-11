@@ -7,17 +7,29 @@
     <script>
         // JavaScript to toggle between SIP and LumpSum modes
         function toggleMode(selectedMode) {
+            // Fetch relevant field groups
             const sipFields = document.getElementById("sipFields");
             const lumpsumField = document.getElementById("lumpsumField");
-            console.log(selectedMode);
+            
+            // Fetch individual input fields
+            const sipInputs = sipFields.querySelectorAll("input");
+            const lumpsumInputs = lumpsumField.querySelectorAll("input");
 
             if (selectedMode === "SIP") {
+                // Show SIP fields and enable required attributes
                 sipFields.style.display = "block";
                 lumpsumField.style.display = "none";
-            } else if (selectedMode === "LumpSum") {
+                sipInputs.forEach(input => input.required = true);
+                lumpsumInputs.forEach(input => input.required = false);
+            } 
+            else if (selectedMode === "LumpSum") {
+                // Show LumpSum fields and enable required attributes
                 sipFields.style.display = "none";
                 lumpsumField.style.display = "block";
+                sipInputs.forEach(input => input.required = false);
+                lumpsumInputs.forEach(input => input.required = true);
             }
+            console.log(selectedMode)
         }
     </script>
 </head>
@@ -31,30 +43,31 @@
     </label> -->
 
     <!-- Toggle Button for SIP and LumpSum -->
-    <div>
-        <label>
-            <input type="radio" name="mode" value="SIP" onclick="toggleMode('SIP')"> SIP
-        </label>
-        <label>
-            <input type="radio" name="mode" value="LumpSum" onclick="toggleMode('LumpSum')"> LumpSum
-        </label>
-    </div>
 
     <form method="POST" action="/">
+        <div>
+            <label>
+                <input type="radio" name="mode" value="SIP" onclick="toggleMode('SIP')"checked> SIP
+            </label> 
+            <label>
+                <input type="radio" name="mode" value="LumpSum" onclick="toggleMode('LumpSum')"> LumpSum
+            </label>
+        </div>
+
         <!-- SIP Fields -->
         <div id="sipFields" style="display: block;">
             <label>Monthly Investment Amount ($):</label><br>
-            <input type="number" name="Investment Amount" required><br><br>
+            <input type="number" name="sipInvestmentAmount"><br><br>
             <label>Years you intend to invest (Years):</label><br>
-            <input type="number" name="Years" required><br><br>
+            <input type="number" name="sipYears"><br><br>
         </div>
 
         <!-- Lumpsum Fields -->
         <div id="lumpsumField" style="display: none;">
             <label>Initial Investment Amount ($):</label><br>
-            <input type="number" name="Investment Amount" required><br><br>
+            <input type="number" name="lumpsumInvestmentAmount"><br><br>
             <label>Years you intend to invest (Years):</label><br>
-            <input type="number" name="Years" required><br><br>
+            <input type="number" name="lumpsumYears"><br><br>
         </div>
 
         <!-- Common Field -->
