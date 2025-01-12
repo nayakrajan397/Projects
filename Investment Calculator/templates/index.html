@@ -4,87 +4,161 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investment Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group {
+            margin-bottom: 20px; /* Add space below each group */
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"], button {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 100%;
+        }
+        button {
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .toggle-mode {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+        .toggle-mode input {
+            margin-right: 5px;
+        }
+        #results {
+            margin-top: 20px;
+        }
+        img {
+            margin-top: 15px;
+            max-width: 100%;
+        }
+        .result-item {
+            margin-bottom: 5px;
+        }
+    </style>
     <script>
-        // JavaScript to toggle between SIP and LumpSum modes
         function toggleMode(selectedMode) {
-            // Fetch relevant field groups
             const sipFields = document.getElementById("sipFields");
             const lumpsumField = document.getElementById("lumpsumField");
-            
-            // Fetch individual input fields
+
             const sipInputs = sipFields.querySelectorAll("input");
             const lumpsumInputs = lumpsumField.querySelectorAll("input");
 
             if (selectedMode === "SIP") {
-                // Show SIP fields and enable required attributes
                 sipFields.style.display = "block";
                 lumpsumField.style.display = "none";
                 sipInputs.forEach(input => input.required = true);
                 lumpsumInputs.forEach(input => input.required = false);
-            } 
-            else if (selectedMode === "LumpSum") {
-                // Show LumpSum fields and enable required attributes
+            } else if (selectedMode === "LumpSum") {
                 sipFields.style.display = "none";
                 lumpsumField.style.display = "block";
                 sipInputs.forEach(input => input.required = false);
                 lumpsumInputs.forEach(input => input.required = true);
             }
-            console.log(selectedMode)
         }
     </script>
 </head>
 <body>
-    <h1>Investment Calculator</h1>
+    <div class="container">
+        <h1>Investment Calculator</h1>
+        <form method="POST" action="/">
+            <div class="toggle-mode">
+                <label>
+                    <input type="radio" name="mode" value="SIP" onclick="toggleMode('SIP')" checked> SIP
+                </label>
+                <label>
+                    <input type="radio" name="mode" value="LumpSum" onclick="toggleMode('LumpSum')"> LumpSum
+                </label>
+            </div>
 
-    <!-- Toggle Switch
-    <label>
-        <input type="checkbox" id="modeToggle" onclick="toggleMode()"> 
-        <span>SIP <-> LumpSum</span>
-    </label> -->
+            <!-- SIP Fields -->
+            <div id="sipFields">
+                <div class="form-group">
+                    <label for="sipInvestmentAmount">Monthly Investment Amount ($):</label>
+                    <input type="number" name="sipInvestmentAmount" id="sipInvestmentAmount">
+                </div>
+                <div class="form-group">
+                    <label for="sipYears">Years You Intend to Invest (Years):</label>
+                    <input type="number" name="sipYears" id="sipYears">
+                </div>
+            </div>
 
-    <!-- Toggle Button for SIP and LumpSum -->
+            <!-- LumpSum Fields -->
+            <div id="lumpsumField" style="display: none;">
+                <div class="form-group">
+                    <label for="lumpsumInvestmentAmount">Initial Investment Amount ($):</label>
+                    <input type="number" name="lumpsumInvestmentAmount" id="lumpsumInvestmentAmount">
+                </div>
+                <div class="form-group">
+                    <label for="lumpsumYears">Years You Intend to Invest (Years):</label>
+                    <input type="number" name="lumpsumYears" id="lumpsumYears">
+                </div>
+            </div>
 
-    <form method="POST" action="/">
-        <div>
-            <label>
-                <input type="radio" name="mode" value="SIP" onclick="toggleMode('SIP')"checked> SIP
-            </label> 
-            <label>
-                <input type="radio" name="mode" value="LumpSum" onclick="toggleMode('LumpSum')"> LumpSum
-            </label>
+            <!-- Common Field -->
+            <div class="form-group">
+                <label for="expectedRate">Expected Rate of Return (%):</label>
+                <input type="number" step="0.01" name="Expected Rate of Return" id="expectedRate" required>
+            </div>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if total_Investment is not none %}
+        <div id="results">
+            <h2>Results:</h2>
+            <p class="result-item">Total Investment: ${{ total_Investment }}</p>
+            <p class="result-item">Final Amount: ${{ final_Amount }}</p>
+            <p class="result-item">Gains: ${{ gains }}</p>
+
+            {% if mode == "SIP" %}
+            <img src="data:image/png;base64,{{ chart }}" alt="Chart">
+            {% endif %}
         </div>
-
-        <!-- SIP Fields -->
-        <div id="sipFields" style="display: block;">
-            <label>Monthly Investment Amount ($):</label><br>
-            <input type="number" name="sipInvestmentAmount"><br><br>
-            <label>Years you intend to invest (Years):</label><br>
-            <input type="number" name="sipYears"><br><br>
-        </div>
-
-        <!-- Lumpsum Fields -->
-        <div id="lumpsumField" style="display: none;">
-            <label>Initial Investment Amount ($):</label><br>
-            <input type="number" name="lumpsumInvestmentAmount"><br><br>
-            <label>Years you intend to invest (Years):</label><br>
-            <input type="number" name="lumpsumYears"><br><br>
-        </div>
-
-        <!-- Common Field -->
-        <label>Expected Rate of Return (%):</label><br>
-        <input type="number" step="0.01" name="Expected Rate of Return" required><br><br>
-
-        <button type="submit">Calculate</button>
-    </form>
-
-    {% if total_Investment is not none %}
-        <h2>Results:</h2>
-        <p>Total Investment: ${{ total_Investment }}</p>
-        <p>Final Amount: ${{ final_Amount }}</p>
-        <p>Gains: ${{ gains }}</p>
-        <!-- Uncomment this line if chart generation is added -->
-        <!-- <img src="data:image/png;base64,{{ chart }}" alt="Chart"> -->
-    {% endif %}
+        {% endif %}
+    </div>
 </body>
 </html>
-
